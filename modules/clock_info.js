@@ -71,11 +71,13 @@ exports.load = function() {
     bangleItems[2].emit("redraw");
   }
   function altUpdateHandler() {
-    Bangle.getPressure().then(data=>{
-      if (!data) return;
-      alt = Math.round(data.altitude) + "m";
-      bangleItems[3].emit("redraw");
-    });
+    var p = Bangle.getPressure();
+    if (p)
+      p.then(data=>{
+        if (!data) return;
+        alt = Math.round(data.altitude) + "m";
+        bangleItems[3].emit("redraw");
+      });
   }
   // actual menu
   var menu = [{
