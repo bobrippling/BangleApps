@@ -1,0 +1,17 @@
+{
+  "id": "antonclk3",
+  "name": "Anton Clock 3",
+  "shortName": "AntonClock3",
+  "version": "0.01",
+  "description": "A clock using the Anton font, showing clock_info",
+  "readme": "README.md",
+  "icon": "app.png",
+  "type": "clock",
+  "tags": "clock",
+  "supports": ["BANGLEJS2"],
+  "allow_emulator": true,
+  "storage": [
+    { "name": "antonclk3.app.js", "url": "app.js" },
+    { "name": "antonclk3.img", "url": "app-icon.js", "evaluate": true }
+  ]
+}
