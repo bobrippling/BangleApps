@@ -391,7 +391,7 @@ function showWhitelistMenu() {
     });
     NRF.removeAllListeners('connect');
     NRF.on('connect', function(addr) {
-      settings.whitelist.push(addr);
+      settings.whitelist.macs.push(addr);
       updateSettings();
       NRF.removeAllListeners('connect');
       showWhitelistMenu();

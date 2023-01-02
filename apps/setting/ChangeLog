@@ -62,3 +62,4 @@
 0.55: More strings tagged for automatic translation.
 0.56: make System menu items shorter and more consistant, Eg 'Clock', intead
 of 'Select Clock'
+0.57: Preserve BLE whitelist even when disabled
