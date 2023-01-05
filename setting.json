@@ -1,0 +1,52 @@
+{
+  "ble": true,
+  "blerepl": true,
+  "log": false,
+  "timeout": 5,
+  "vibrate": true,
+  "beep": true,
+  "timezone": 0,
+  "HID": false,
+  "clock": "antonclk3.app.js",
+  "12hour": false,
+  "brightness": 1,
+  "options": {
+    "wakeOnBTN1": true,
+    "wakeOnBTN2": true,
+    "wakeOnBTN3": true,
+    "wakeOnFaceUp": false,
+    "wakeOnTouch": false,
+    "wakeOnTwist": true,
+    "twistThreshold": 655.36,
+    "twistMaxY": -600,
+    "twistTimeout": 600
+  },
+  "theme": {
+    "fg": 65535,
+    "bg": 0,
+    "fg2": 65535,
+    "bg2": 8,
+    "fgH": 65535,
+    "bgH": 31,
+    "dark": true
+  },
+  "firstDayOfWeek": 1,
+  "clockHasWidgets": true,
+  "launcher": "dtlaunch.app.js",
+  "rotate": 0,
+  "touch": {
+    "x1": -9,
+    "y1": 12,
+    "x2": 186,
+    "y2": 173
+  },
+  "quiet": 0,
+  "whitelist": {
+    "macs": [
+      "88:66:5a:32:7c:cd public",
+      "75:f5:69:7b:74:a6 private-resolvable",
+      "00:1a:7d:da:71:10 public",
+      "66:53:ff:35:55:bc private-resolvable"
+    ]
+  }
+}
