@@ -71,13 +71,15 @@ exports.load = function() {
     bangleItems[2].emit("redraw");
   }
   function altUpdateHandler() {
-    var p = Bangle.getPressure();
-    if (p)
-      p.then(data=>{
+    try {
+      Bangle.getPressure().then(data=>{
         if (!data) return;
         alt = Math.round(data.altitude) + "m";
         bangleItems[3].emit("redraw");
       });
+    } catch (e) {
+      print("Caught "+e+"\n in function altUpdateHandler in module clock_info");
+      bangleItems[3].emit('redraw');}
   }
   // actual menu
   var menu = [{
