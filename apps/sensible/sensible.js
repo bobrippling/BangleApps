@@ -1,52 +1,65 @@
-/**
- * Copyright reelyActive 2021-2022
- * We believe in an open Internet of Things
- */
-
-
-// Non-user-configurable constants
-const APP_ID = 'sensible';
-const ESPRUINO_COMPANY_CODE = 0x0590;
 const SETTINGS_FILENAME = 'sensible.data.json';
 const UPDATE_MILLISECONDS = 1000;
-const APP_ADVERTISING_DATA = [ 0x12, 0xff, 0x90, 0x05, 0x7b, 0x6e, 0x61, 0x6d,
-                               0x65, 0x3a, 0x73, 0x65, 0x6e, 0x73, 0x69, 0x62,
-                               0x6c, 0x65, 0x7d ];
+const APP_ADVERTISING_DATA = [
+  0x12, // length of services
+    0xff, // param: ?
+    0x90,
+    0x05,
+    0x7b,
+    0x6e,
+    0x61,
+    0x6d,
+    0x65,
+    0x3a,
+    0x73,
+    0x65,
+    0x6e,
+
+  0x73, // length of service data???
+    0x69,
+    0x62,
+    0x6c,
+    0x65,
+    0x7d,
+];
 
 
-// Global variables
 let acc, bar, hrm, mag;
-let isAccMenu = false;
-let isBarMenu = false;
-let isGpsMenu = false;
-let isHrmMenu = false;
-let isMagMenu = false;
-let isNewAccData = false;
-let isNewBarData = false;
-let isNewGpsData = false;
-let isNewHrmData = false;
-let isNewMagData = false;
+let curMenu; // acc | bar | gps | hrm | mag | main
 let settings = require('Storage').readJSON(SETTINGS_FILENAME);
 
+const showMainMenu = () => {
+  const onOff = b => b ? " (on)" : " (off)"
+
+  const mainMenu = {
+    "": { "title": "--  btadv  --" },
+    "Acceleration":
+      () => { E.showMenu(accMenu); curMenu = "acc"; },
+    ["Barometer" + onOff(settings.isBarEnabled)]:
+      () => { E.showMenu(barMenu); curMenu = "bar"; },
+    ["GPS" + onOff(settings.isGpsEnabled)]:
+      () => { E.showMenu(gpsMenu); curMenu = "gps"; },
+    ["Heart Rate" + onOff(settings.isHrmEnabled)]:
+      () => { E.showMenu(hrmMenu); curMenu = "hrm"; },
+    ["Magnetometer" + onOff(settings.isMagEnabled)]:
+      () => { E.showMenu(magMenu); curMenu = "mag"; },
+    "Exit": load,
+  };
+
+  E.showMenu(mainMenu);
+  curMenu = "main";
+};
 
 // Menus
-let mainMenu = {
-  "": { "title": "--  SensiBLE  --" },
-  "Acceleration": function() { E.showMenu(accMenu); isAccMenu = true; },
-  "Barometer": function() { E.showMenu(barMenu); isBarMenu = true; },
-  "GPS": function() { E.showMenu(gpsMenu); isGpsMenu = true; },
-  "Heart Rate": function() { E.showMenu(hrmMenu); isHrmMenu = true; },
-  "Magnetometer": function() { E.showMenu(magMenu); isMagMenu = true; }
-};
-let accMenu = {
+const accMenu = {
   "": { "title" : "- Acceleration -" },
-  "State": { value: "On" },
+  "State": { value: "On (fixed)" },
   "x": { value: null },
   "y": { value: null },
   "z": { value: null },
-  "<-": function() { E.showMenu(mainMenu); isAccMenu = false; },
+  "<-": showMainMenu,
 };
-let barMenu = {
+const barMenu = {
   "": { "title" : "-  Barometer   -" },
   "State": {
     value: settings.isBarEnabled,
@@ -55,9 +68,9 @@ let barMenu = {
   "Altitude": { value: null },
   "Press": { value: null },
   "Temp": { value: null },
-  "<-": function() { E.showMenu(mainMenu); isBarMenu = false; },
+  "<-": showMainMenu,
 };
-let gpsMenu = {
+const gpsMenu = {
   "": { "title" : "-      GPS     -" },
   "State": {
     value: settings.isGpsEnabled,
@@ -68,9 +81,9 @@ let gpsMenu = {
   "Altitude": { value: null },
   "Satellites": { value: null },
   "HDOP": { value: null },
-  "<-": function() { E.showMenu(mainMenu); isGpsMenu = false; },
+  "<-": showMainMenu,
 };
-let hrmMenu = {
+const hrmMenu = {
   "": { "title" : "-  Heart Rate  -" },
   "State": {
     value: settings.isHrmEnabled,
@@ -78,9 +91,9 @@ let hrmMenu = {
   },
   "BPM": { value: null },
   "Confidence": { value: null },
-  "<-": function() { E.showMenu(mainMenu); isHrmMenu = false; },
+  "<-": showMainMenu,
 };
-let magMenu = {
+const magMenu = {
   "": { "title" : "- Magnetometer -" },
   "State": {
     value: settings.isMagEnabled,
@@ -90,44 +103,52 @@ let magMenu = {
   "y": { value: null },
   "z": { value: null },
   "Heading": { value: null },
-  "<-": function() { E.showMenu(mainMenu); isMagMenu = false; },
+  "<-": showMainMenu,
 };
 
+const transmitUpdatedSensorData = () => {
+  if (!Bangle.bleAdvert)
+    Bangle.bleAdvert = {};
 
-// Check for new sensor data and update the advertising sequence
-function transmitUpdatedSensorData() {
-  let data = [ APP_ADVERTISING_DATA ]; // Always advertise at least app name
+  const data = [ APP_ADVERTISING_DATA ]; // Always advertise at least app name
 
-  if(isNewBarData) {
-    data.push(encodeBarServiceData());
-    isNewBarData = false;
+  if (bar) {
+    data.push(encodeBarServiceData(bar));
+    bar = undefined;
   }
 
-  if(isNewGpsData && gps.lat && gps.lon) {
-    data.push(encodeGpsServiceData());
-    isNewGpsData = false;
+  if (gps && gps.lat && gps.lon) {
+    data.push(encodeGpsServiceData(gps));
+    gps = undefined;
   }
 
-  if(isNewHrmData) {
+  if (hrm) {
+    Bangle.bleAdvert[0x180D] = undefined; // Advertise HRM
+
     data.push({ 0x2a37: [ 0, hrm.bpm ] });
-    isNewHrmData = false;
+    hrm = undefined;
   }
 
-  if(isNewMagData) {
-    data.push(encodeMagServiceData());
-    isNewMagData = false;
+  if (mag) {
+    data.push(encodeMagServiceData(mag));
+    mag = undefined;
   }
 
-  let interval = UPDATE_MILLISECONDS / data.length;
-  NRF.setAdvertising(data, { showName: false, interval: interval });
-}
+  const interval = UPDATE_MILLISECONDS / data.length;
 
+  NRF.setAdvertising(
+    Bangle.bleAdvert,
+    {
+      interval,
+    },
+  );
+};
 
 // Encode the bar service data to fit in a Bluetooth PDU
-function encodeBarServiceData() {
-  let t = toByteArray(Math.round(bar.temperature * 100), 2, true);
-  let p = toByteArray(Math.round(bar.pressure * 1000), 4, false);
-  let e = toByteArray(Math.round(bar.altitude * 100), 3, true);
+const encodeBarServiceData = data => {
+  const t = toByteArray(Math.round(data.temperature * 100), 2, true);
+  const p = toByteArray(Math.round(data.pressure * 1000), 4, false);
+  const e = toByteArray(Math.round(data.altitude * 100), 3, true);
 
   return [
       0x02, 0x01, 0x06,                               // Flags
@@ -135,16 +156,16 @@ function encodeBarServiceData() {
       0x07, 0x16, 0x6d, 0x2a, p[0], p[1], p[2], p[3], // Pressure
       0x06, 0x16, 0x6c, 0x2a, e[0], e[1], e[2]        // Elevation
   ];
-}
+};
 
 
 // Encode the GPS service data using the Location and Speed characteristic
-function encodeGpsServiceData() {
-  let s = toByteArray(Math.round(1000 * gps.speed / 36), 2, false);
-  let lat = toByteArray(Math.round(gps.lat * 10000000), 4, true);
-  let lon = toByteArray(Math.round(gps.lon * 10000000), 4, true);
-  let e = toByteArray(Math.round(gps.alt * 100), 3, true);
-  let h = toByteArray(Math.round(gps.course * 100), 2, false);
+const encodeGpsServiceData = data => {
+  const s = toByteArray(Math.round(1000 * data.speed / 36), 2, false);
+  const lat = toByteArray(Math.round(data.lat * 10000000), 4, true);
+  const lon = toByteArray(Math.round(data.lon * 10000000), 4, true);
+  const e = toByteArray(Math.round(data.alt * 100), 3, true);
+  const h = toByteArray(Math.round(data.course * 100), 2, false);
 
   return [
       0x02, 0x01, 0x06, // Flags
@@ -152,25 +173,25 @@ function encodeGpsServiceData() {
       lat[3], lon[0], lon[1], lon[2], lon[3], e[0], e[1], e[2], h[0], h[1]
                         // Location and Speed
   ];
-}
+};
 
 
 // Encode the mag service data using the magnetic flux density 3D characteristic
-function encodeMagServiceData() {
-  let x = toByteArray(mag.x, 2, true);
-  let y = toByteArray(mag.y, 2, true);
-  let z = toByteArray(mag.z, 2, true);
+const encodeMagServiceData = data => {
+  const x = toByteArray(data.x, 2, true);
+  const y = toByteArray(data.y, 2, true);
+  const z = toByteArray(data.z, 2, true);
 
   return [
       0x02, 0x01, 0x06,                                          // Flags
       0x09, 0x16, 0xa1, 0x2a, x[0], x[1], y[0], y[1], z[0], z[1] // Mag 3D
   ];
-}
+};
 
 
 // Convert the given value to a little endian byte array
-function toByteArray(value, numberOfBytes, isSigned) {
-  let byteArray = new Array(numberOfBytes);
+const toByteArray = (value, numberOfBytes, isSigned) => {
+  const byteArray = new Array(numberOfBytes);
 
   if(isSigned && (value < 0)) {
     value += 1 << (numberOfBytes * 8);
@@ -181,32 +202,29 @@ function toByteArray(value, numberOfBytes, isSigned) {
   }
 
   return byteArray;
-}
+};
 
-
-// Enable the sensors as per the current settings
-function enableSensors() {
-  Bangle.setBarometerPower(settings.isBarEnabled, APP_ID);
-  Bangle.setGPSPower(settings.isGpsEnabled, APP_ID);
-  Bangle.setHRMPower(settings.isHrmEnabled, APP_ID);
-  Bangle.setCompassPower(settings.isMagEnabled, APP_ID);
-}
+const enableSensors = () => {
+  Bangle.setBarometerPower(settings.isBarEnabled, "btadv");
+  Bangle.setGPSPower(settings.isGpsEnabled, "btadv");
+  Bangle.setHRMPower(settings.isHrmEnabled, "btadv");
+  Bangle.setCompassPower(settings.isMagEnabled, "btadv");
+};
 
 
 // Update the given setting and write to persistent storage
-function updateSetting(name, value) {
+const updateSetting = (name, value) => {
   settings[name] = value;
   require('Storage').writeJSON(SETTINGS_FILENAME, settings);
   enableSensors();
-}
+};
 
 
 // Update acceleration
-Bangle.on('accel', function(newAcc) {
+Bangle.on('accel', newAcc => {
   acc = newAcc;
-  isNewAccData = true;
 
-  if(isAccMenu) {
+  if(menu === "acc") {
     accMenu.x.value = acc.x.toFixed(2);
     accMenu.y.value = acc.y.toFixed(2);
     accMenu.z.value = acc.z.toFixed(2);
@@ -215,11 +233,10 @@ Bangle.on('accel', function(newAcc) {
 });
 
 // Update barometer
-Bangle.on('pressure', function(newBar) {
+Bangle.on('pressure', newBar => {
   bar = newBar;
-  isNewBarData = true;
 
-  if(isBarMenu) {
+  if(menu === "bar") {
     barMenu.Altitude.value = bar.altitude.toFixed(1) + 'm';
     barMenu.Press.value = bar.pressure.toFixed(1) + 'mbar';
     barMenu.Temp.value = bar.temperature.toFixed(1) + 'C';
@@ -228,11 +245,10 @@ Bangle.on('pressure', function(newBar) {
 });
 
 // Update GPS
-Bangle.on('GPS', function(newGps) {
+Bangle.on('GPS', newGps => {
   gps = newGps;
-  isNewGpsData = true;
 
-  if(isGpsMenu) {
+  if(menu === "gps") {
     gpsMenu.Lat.value = gps.lat.toFixed(4);
     gpsMenu.Lon.value = gps.lon.toFixed(4);
     gpsMenu.Altitude.value = gps.alt + 'm';
@@ -243,11 +259,10 @@ Bangle.on('GPS', function(newGps) {
 });
 
 // Update heart rate monitor
-Bangle.on('HRM', function(newHrm) {
+Bangle.on('HRM', newHrm => {
   hrm = newHrm;
-  isNewHrmData = true;
 
-  if(isHrmMenu) {
+  if(menu === "hrm") {
     hrmMenu.BPM.value = hrm.bpm;
     hrmMenu.Confidence.value = hrm.confidence + '%';
     E.showMenu(hrmMenu);
@@ -255,11 +270,10 @@ Bangle.on('HRM', function(newHrm) {
 });
 
 // Update magnetometer
-Bangle.on('mag', function(newMag) {
+Bangle.on('mag', newMag => {
   mag = newMag;
-  isNewMagData = true;
 
-  if(isMagMenu) {
+  if(menu === "mag") {
     magMenu.x.value = mag.x;
     magMenu.y.value = mag.y;
     magMenu.z.value = mag.z;
@@ -269,8 +283,10 @@ Bangle.on('mag', function(newMag) {
 });
 
 
-// On start: enable sensors and display main menu
 g.clear();
 enableSensors();
-E.showMenu(mainMenu);
+showMainMenu();
 setInterval(transmitUpdatedSensorData, UPDATE_MILLISECONDS);
+
+Bangle.loadWidgets();
+Bangle.drawWidgets();
