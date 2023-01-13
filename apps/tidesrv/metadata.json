@@ -1,15 +1,18 @@
-{ 
-  "id":  "tidesrv",
-  "name": "Tide service",
+{
+  "id":  "tides",
+  "name": "Tide app",
   "version": "0.10",
-  "description": "Service for tidal information",
-  "icon": "widget.png",
-  "tags": "widget, app",
+  "description": "Display current tide status",
+  "icon": "icon.png",
+  "tags": "app",
   "supports": ["BANGLEJS","BANGLEJS2"],
   "storage": [
-    {"name":"tidesrv.app.js", "url":"app.js"},
-    {"name":"tidesrv.boot.js", "url":"boot.js"},
-    {"name":"tidesrv.settings.js", "url":"settings.js"},
-    {"name":"tidesrv.img","url":"app-icon.js","evaluate":true}
+    {"name":"tides.app.js", "url":"app.js"},
+    {"name":"tides.img","url":"app-icon.js","evaluate":true},
+    {"name":"tides.clkinfo.js","url":"clkinfo.js"} // TODO
+    // TODO: mv apps/tidesrv apps/tides
+  ]
+  "data": [
+    { "name": "TODO", "url": "settings.json", "storageFile": true }
   ]
 }
