@@ -1635,8 +1635,8 @@ declare class Graphics<IsBuffer extends boolean = boolean> {
    * @returns {any} The instance of Graphics this was called on, to allow call chaining
    * @url http://www.espruino.com/Reference#l_Graphics_setColor
    */
-  setColor(r: number, g: number, b: number): number;
-  setColor(col: ColorResolvable): number;
+  setColor(r: number, g: number, b: number): Graphics;
+  setColor(col: ColorResolvable): Graphics;
 
   /**
    * Set the background color to use for subsequent drawing operations.
@@ -1650,8 +1650,8 @@ declare class Graphics<IsBuffer extends boolean = boolean> {
    * @returns {any} The instance of Graphics this was called on, to allow call chaining
    * @url http://www.espruino.com/Reference#l_Graphics_setBgColor
    */
-  setBgColor(r: number, g: number, b: number): number;
-  setBgColor(col: ColorResolvable): number;
+  setBgColor(r: number, g: number, b: number): Graphics;
+  setBgColor(col: ColorResolvable): Graphics;
 
   /**
    * Get the color to use for subsequent drawing operations
@@ -5663,7 +5663,7 @@ declare class Bangle {
    * @param {any} callback - A function with one argument which is the direction
    * @url http://www.espruino.com/Reference#l_Bangle_setUI
    */
-  static setUI(type?: "updown" | "leftright" | "clock" | "clockupdown" | { mode: "custom"; back?: () => void; touch?: TouchCallback; swipe?: SwipeCallback; drag?: DragCallback; btn?: (n: number) => void, clock?: boolean }, callback?: (direction?: -1 | 1) => void): void;
+  static setUI(type?: "updown" | "leftright" | "clock" | "clockupdown" | { mode: "custom"; back?: () => void; touch?: TouchCallback; swipe?: SwipeCallback; drag?: DragCallback; btn?: (n: number) => void, clock?: boolean, remove: () => void }, callback?: (direction?: -1 | 1) => void): void;
 
   /**
    * @url http://www.espruino.com/Reference#l_Bangle_setUI
@@ -8257,7 +8257,7 @@ interface Object {
    * @returns {any} A String representing the object
    * @url http://www.espruino.com/Reference#l_Object_toString
    */
-  toString(radix: any): any;
+  toString(radix?: any): any;
 
   /**
    * Copy this object completely
