@@ -13010,4 +13010,12 @@ type Libraries = {
      */
     read(length: number, addr: number): any;
   }
+
+  locale: {
+    // https://www.espruino.com/Bangle.js+Locale
+
+    time(date: Date, short: boolean | number): string; // no secs
+    date(date: Date, short: boolean | number): string; // short: numbers, long: human days etc
+    dow(date: Date, short: boolean | number): string;
+  }
 }
