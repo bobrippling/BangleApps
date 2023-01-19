@@ -20,7 +20,7 @@
 
     // set area, sortorder, width and dragStatus
     area: "tr",
-    sortorder: 10,
+    sortorder: 0,
     width: 23,
     dragStatus: "off",
 
@@ -251,7 +251,7 @@
       w = undefined;
     }
   });
-  
+
   Bangle.on("lock", locked => {
     var w = WIDGETS.lightswitch;
     // set lcd brightness on unlocking
