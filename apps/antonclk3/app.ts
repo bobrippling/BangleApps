@@ -7,7 +7,12 @@
 
 {
   const locale = require("locale");
-  const clock_info = require("clock_info");
+  const clock_info = require("clock_info") as typeof ClockInfo;
+  const Layout = require("layout") as Layout.Layout;
+  const ClockFace = require("ClockFace") as typeof ClockFace_.ClockFace;
+
+  const layout = new Layout();
+  const clockface = new ClockFace();
 
   let showSeconds = false;
   let drawTimeout: number | undefined;
@@ -73,7 +78,7 @@
   };
 
   const clockInfoDraw: ClockInfo.Options["draw"] = (_item, info, options) => {
-    const { fg, bg } = g.theme;
+    const { fg: fg, bg } = g.theme;
     const hl = "#0ff";
 
     g.reset()
@@ -81,6 +86,7 @@
       .setBgColor(bg)
       .setColor(options.focus ? hl : fg);
 
+    // TODO: check info.short?
     const textWidth = g.stringWidth(info.text.toString());
     const gap = 10;
     const totalWidth = gap + (info.img ? 24 : 0) + textWidth;
