@@ -3129,7 +3129,7 @@ declare class NRF {
    * @param {any} options - An optional object of options
    * @url http://www.espruino.com/Reference#l_NRF_setAdvertising
    */
-  static setAdvertising(data: any, options: any): void;
+  static setAdvertising(data: any, options?: any): void;
 
   /**
    * Called when a host device connects to Espruino. The first argument contains the
