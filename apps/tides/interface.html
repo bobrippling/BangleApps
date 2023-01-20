@@ -1,0 +1,71 @@
+
+<html>
+  <head>
+    <link rel="stylesheet" href="../../css/spectre.min.css">
+  </head>
+  <body>
+    <div id="content"></div>
+
+		<!-- Puck, Util -->
+    <script src="../../core/lib/interface.js"></script>
+
+		<button id="fetch_tides" class="btn btn-primary">Fetch tide data</button>
+    <button id="upload_tides" class="btn btn-primary">Upload to watch</button>
+
+    <script>
+			const stations = {
+				"blyth": "0204",
+				"south shields": "0202",
+			};
+
+			let tideData;
+
+			fetch_tides.addEventListener("click", () => {
+				Util.showModal("Downloading tide data...");
+				const stationId = stations["blyth"];
+
+				const network = true;
+				let json;
+				if (network) {
+					const resp = await fetch(
+						`https://easytide.admiralty.co.uk/Home/GetPredictionData?stationId=${stationId}`,
+						{ method: "GET" }
+					);
+
+					json = await resp.json();
+				} else {
+					const components = process.argv[1].split("/");
+					components.pop();
+					components.push("got.json");
+					const path = components.join("/")
+					tideData = JSON.parse(fs.readFileSync(path));
+				}
+
+				tideData = json.tidalHeightOccurrenceList
+					.map(({ dateTime, height }) => ({
+						timestamp: new Date(dateTime).getTime(),
+						height,
+					}));
+
+				upload_tides.enabled = true;
+				Util.hideModal();
+			});
+
+			upload_tides.addEventListener("click", () => {
+				Util.showModal("Uploading tide data...");
+
+				const filename = "tides.json";
+				Util.writeStorage(filename, tideData, (data) => {
+					Util.hideModal();
+				});
+      });
+
+			const uiInit = () => {
+				fetch_tides.enabled = true;
+				upload_tides.enabled = false;
+			};
+
+			uiInit();
+    </script>
+  </body>
+</html>
