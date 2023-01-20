@@ -9,9 +9,8 @@
   "storage": [
     {"name":"tides.app.js", "url":"app.js"},
     {"name":"tides.img","url":"app-icon.js","evaluate":true},
-    {"name":"tides.clkinfo.js","url":"clkinfo.js"} // TODO
-    // TODO: mv apps/tidesrv apps/tides
-  ]
+    {"name":"tides.clkinfo.js","url":"clkinfo.js"}
+  ],
   "data": [
     { "name": "TODO", "url": "settings.json", "storageFile": true }
   ]
