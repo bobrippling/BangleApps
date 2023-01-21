@@ -34,6 +34,7 @@ type MenuOptions = {
   back?: () => void;
   selected?: number;
   fontHeight?: number;
+  scroll?: number;
   x?: number;
   y?: number;
   x2?: number;
@@ -52,7 +53,7 @@ type MenuOptions = {
 type Menu = {
   ""?: MenuOptions;
   [key: string]:
-    | MenuOptions
+    | MenuOptions // not actually an option here
     | (() => void)
     | MenuBooleanItem
     | MenuNumberItem
@@ -1371,7 +1372,7 @@ declare class Graphics<IsBuffer extends boolean = boolean> {
    * @returns {any} The instance of Graphics this was called on, to allow call chaining
    * @url http://www.espruino.com/Reference#l_Graphics_setFont12x20
    */
-  setFont12x20(scale: number): Graphics;
+  setFont12x20(scale?: number): Graphics;
 
   /**
    * On instances of graphics that drive a display with an offscreen buffer, calling
