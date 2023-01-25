@@ -7,7 +7,7 @@ NRF.setServices(
   {
     0x180d: {
       0x2a37: {
-        value: [0, 65],
+        value: [0, 0],
         // {
         //   flags: u8,
         //   bytes: [u8...]
@@ -25,24 +25,26 @@ NRF.setServices(
         //indicate: true, // notify + ACK
       },
     },
-    0x180f: {
-      0x2a19: {
-        value: [E.getBattery()],
-        readable: true,
-        notify: true,
-      },
-    },
+    // 0x180f: {
+    //   0x2a19: {
+    //     value: [E.getBattery()],
+    //     readable: true,
+    //     notify: true,
+    //   },
+    // },
   },
   {
-    advertise: ['180d', '180f']
+    advertise: ['180d'/*, '180f'*/]
   },
 );
 
 let last = Date.now();
 
 const onHrm = hrm => {
-  let err;
+  if (hrm.confidence < 60)
+    return;
 
+  let err;
   try {
     NRF.updateServices({
       0x180d: {
@@ -61,6 +63,7 @@ const onHrm = hrm => {
   if (now - last > 1000){
     g
       .clearRect(Bangle.appRect)
+      .setFont("6x8", 2)
       .drawString(`emit hrm (${hrm.bpm})`, 0, 48)
       .drawString(`err: "${err}"`, 0, 72)
 
@@ -68,15 +71,15 @@ const onHrm = hrm => {
   }
 };
 
-// Bangle.on('HRM', onHrm);
-//Bangle.setHRMPower(1, 'sensible');
+Bangle.on('HRM', onHrm);
+Bangle.setHRMPower(1, 'sensible');
 
-let x = 40;
-setInterval(() => {
-  x += 1;
-  if (x > 65) x = 40;
-  onHrm({ bpm: x });
-}, 2000);
+// let x = 40;
+// setInterval(() => {
+//   x += 1;
+//   if (x > 65) x = 40;
+//   onHrm({ bpm: x });
+// }, 2000);
 
 g
   .setFont("6x8")
