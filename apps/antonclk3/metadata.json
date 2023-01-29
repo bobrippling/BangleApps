@@ -10,6 +10,9 @@
   "tags": "clock",
   "supports": ["BANGLEJS2"],
   "allow_emulator": true,
+  "dependencies": {
+    "clock_info": "module"
+  },
   "storage": [
     { "name": "antonclk3.app.js", "url": "app.js" },
     { "name": "antonclk3.img", "url": "app-icon.js", "evaluate": true }
