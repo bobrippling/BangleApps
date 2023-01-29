@@ -8107,7 +8107,7 @@ interface ObjectConstructor {
    * @returns {any} An array of strings - one for each key on the given object
    * @url http://www.espruino.com/Reference#l_Object_keys
    */
-  keys(object: any): any;
+  keys(object: any): Array<any>;
 
   /**
    * Returns an array of all properties (enumerable or not) found directly on a given
@@ -8117,7 +8117,7 @@ interface ObjectConstructor {
    * @returns {any} An array of the Object's own properties
    * @url http://www.espruino.com/Reference#l_Object_getOwnPropertyNames
    */
-  getOwnPropertyNames(object: any): any;
+  getOwnPropertyNames(object: any): Array<any>;
 
   /**
    * Return all enumerable values of the given object
@@ -8126,7 +8126,7 @@ interface ObjectConstructor {
    * @returns {any} An array of values - one for each key on the given object
    * @url http://www.espruino.com/Reference#l_Object_values
    */
-  values(object: any): any;
+  values(object: any): Array<any>;
 
   /**
    * Return all enumerable keys and values of the given object
@@ -8135,7 +8135,7 @@ interface ObjectConstructor {
    * @returns {any} An array of `[key,value]` pairs - one for each key on the given object
    * @url http://www.espruino.com/Reference#l_Object_entries
    */
-  entries(object: any): any;
+  entries(object: any): Array<any>;
 
   /**
    * Creates a new object with the specified prototype object and properties.
