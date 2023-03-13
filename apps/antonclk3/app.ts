@@ -122,20 +122,20 @@
   const clockInfoMenus = [
     {
       app,
-      x: 0,
+      x: 44,
       y: 142,
       w: 88,
       h: 30,
       draw: clockInfoDraw,
     },
-    {
-      app,
-      x: 88,
-      y: 142,
-      w: 88,
-      h: 30,
-      draw: clockInfoDraw,
-    }
+    // {
+    //   app,
+    //   x: 88,
+    //   y: 142,
+    //   w: 88,
+    //   h: 30,
+    //   draw: clockInfoDraw,
+    // }
   ]
     .map(menu => clock_info.addInteractive(clockInfoItems, menu));
 
