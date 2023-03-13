@@ -6,6 +6,7 @@
 // TODO: modules/{ClockFace,Layout,{date,time}_utils}
 
 {
+  const app = "antonclk3";
   const locale = require("locale");
   const clock_info = require("clock_info");
   // const Layout = require("Layout");
@@ -84,10 +85,13 @@
   };
 
   const clockInfoDraw: ClockInfo.Options["draw"] = (_item, info, options) => {
+    const { fg: fg, bg } = g.theme;
+    const hl = "#0ff";
+
     g.reset()
       .setFont("6x8")
-      .setBgColor(options.bg)
-      .setColor(options.focus ? options.hl : options.fg);
+      .setBgColor(bg)
+      .setColor(options.focus ? hl : fg);
 
     // TODO: check info.short?
     const textWidth = g.stringWidth(info.text.toString());
@@ -117,23 +121,19 @@
   const clockInfoItems = clock_info.load();
   const clockInfoMenus = [
     {
+      app,
       x: 0,
       y: 142,
       w: 88,
       h: 30,
-      bg: g.theme.bg,
-      fg: g.theme.fg,
-      hl: "#0ff",
       draw: clockInfoDraw,
     },
     {
+      app,
       x: 88,
       y: 142,
       w: 88,
       h: 30,
-      bg: g.theme.bg,
-      fg: g.theme.fg,
-      hl: "#0ff",
       draw: clockInfoDraw,
     }
   ]
