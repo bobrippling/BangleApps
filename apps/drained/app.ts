@@ -26,7 +26,6 @@ NRF.sleep();
 
 // events
 Bangle.removeAllListeners();
-clearWatch();
 
 // UI
 Bangle.setOptions({
@@ -71,6 +70,7 @@ Bangle.setUI({
     nextDraw = undefined;
   },
 });
+clearWatch();
 
 g.clear();
 draw();
