@@ -137,7 +137,7 @@
     //   draw: clockInfoDraw,
     // }
   ]
-    .map(menu => clock_info.addInteractive(clockInfoItems, menu));
+    .map(menu => clock_info.addInteractive(clockInfoItems, menu)); // FIXME? this causes ../clock_info/lib.js to register its swipeHandler twice
 
   Bangle.on('lock', onStateChange);
   onStateChange();
