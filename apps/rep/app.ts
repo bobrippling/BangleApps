@@ -159,6 +159,11 @@ const layout = new L({
 						state?.rewind();
 						drawRep();
 					},
+					cbl: () => {
+						buzzInteraction();
+						state?.prevRep();
+						drawRep();
+					},
 				},
 				{
 					id: "play",
@@ -190,6 +195,11 @@ const layout = new L({
 					cb: () => {
 						buzzInteraction();
 						state?.forward();
+						drawRep();
+					},
+					cbl: () => {
+						buzzInteraction();
+						state?.nextRep();
 						drawRep();
 					},
 				}
@@ -245,6 +255,20 @@ class State {
 
 	rewind() {
 		this.accumulated -= ffStep;
+	}
+
+	prevRep() {
+        const cur = this.currentRepIndex();
+        if (cur <= 0) return;
+
+        const rep = reps[cur - 1]!;
+        const dur = Date.now() - this.begin;
+
+        this.accumulated = rep.accDur - dur; // ?
+	}
+
+	nextRep() {
+        // TODO
 	}
 }
 
