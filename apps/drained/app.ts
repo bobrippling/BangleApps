@@ -1,7 +1,9 @@
+declare var drainedInterval: IntervalId | undefined;
+
+{
 const app = "drained";
 
 // from boot.js
-declare var drainedInterval: IntervalId | undefined;
 if(typeof drainedInterval !== "undefined")
   drainedInterval = clearInterval(drainedInterval) as undefined;
 
@@ -136,4 +138,5 @@ if(!keepStartup){
       console.log(`error loading boot exception "${boot}": ${e}`);
     }
   }
+}
 }
