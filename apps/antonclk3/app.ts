@@ -94,6 +94,7 @@
       .setColor(options.focus ? hl : fg);
 
     // TODO: check info.short?
+    // TODO: draw _item.name?
     const textWidth = g.stringWidth(info.text.toString());
     const gap = 10;
     const totalWidth = gap + (info.img ? 24 : 0) + textWidth;
