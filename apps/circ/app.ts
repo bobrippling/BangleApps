@@ -8,7 +8,10 @@ const centerY = R.y + R.h / 2;
 let drawTimeout: TimeoutId | undefined;
 
 const draw = () => {
-		g.reset().clearRect(R);
+		g.reset()
+            .clearRect(R)
+            .setClipRect(R);
+
 		drawCircles();
 		drawHands();
 
