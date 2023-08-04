@@ -11,3 +11,6 @@ You can rewind, fast-forward and play/pause with the control buttons.
 	- [ ] Recorder toggle functionality
 - [ ] Fastload: scoping, unregister layout handlers etc
 - [ ] Swipe handlers as well as "<<" / ">>" buttons
+	- ^ instead of
+	- swipe handlers jump to next / prev rep boundary
+- interaction buzzing doesn't stack

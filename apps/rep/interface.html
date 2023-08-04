@@ -101,6 +101,7 @@ function getData() {
   uploadBtn.disabled = true;
 
   Util.showModal("Loading...");
+  // TODO: fix this - what if it doesn't exist?
   Util.readStorage(repJson, data => {
     Util.hideModal();
 
