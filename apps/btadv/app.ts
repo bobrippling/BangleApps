@@ -792,4 +792,9 @@ enableSensors();
     }
   );
 }
+
+// issue with IDE/apploader connecting, but not phone - issue with executing code?
+errors = [];
+process.on('uncaughtException', e => errors.push(e));
 }
+declare var errors: any[];

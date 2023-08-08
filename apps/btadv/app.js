@@ -457,4 +457,6 @@ var _a;
             interval: 100,
         });
     }
+    errors = [];
+    process.on('uncaughtException', function (e) { return errors.push(e); });
 }
