@@ -15,8 +15,8 @@ function loadLocation () {
 }
 
 const latlon = loadLocation() || {};
-const lat = latlon.lat || 41.38;
-const lon = latlon.lon || 2.168;
+const lat = latlon.lat || 21; //41.38;
+const lon = latlon.lon || -3; //2.168;
 
 const w = g.getWidth();
 const h = g.getHeight();
