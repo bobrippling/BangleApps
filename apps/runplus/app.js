@@ -2,7 +2,7 @@
 let wu = require("widget_utils");
 
 let runInterval;
-let karvonnenActive = false;
+let karvonenActive = false;
 // Run interface wrapped in a function
 let ExStats = require("exstats");
 let B2 = process.env.HWVERSION===2;
@@ -44,8 +44,8 @@ let settings = Object.assign({
     },
   },
   HRM: {
-    min: 65,
-    max: 170,
+    min: 55,
+    max: 185,
   },
 }, require("Storage").readJSON("runplus.json", 1) || {});
 let statIDs = [settings.B1,settings.B2,settings.B3,settings.B4,settings.B5,settings.B6].filter(s=>s!=="");
@@ -61,8 +61,23 @@ function setStatus(running) {
 
 // Called to start/stop running
 function onStartStop() {
-  let running = !exs.state.active;
-  let prepPromises = [];
+  var running = !exs.state.active;
+  var shouldResume = false;
+  var promise = Promise.resolve();
+
+  if (running && exs.state.duration > 10000) { // if more than 10 seconds of duration, ask if we should resume?
+    promise = promise.
+      then(() => {
+        isMenuDisplayed = true;
+        return E.showPrompt("Resume run?",{title:"Run"});
+      }).then(r => {
+        isMenuDisplayed=false;
+        layout.setUI(); // grab our input handling again
+        layout.forgetLazyState();
+        layout.render();
+        shouldResume=r;
+      });
+  }
 
   // start/stop recording
   // Do this first in case recorder needs to prompt for
@@ -70,28 +85,27 @@ function onStartStop() {
   if (settings.record && WIDGETS["recorder"]) {
     if (running) {
       isMenuDisplayed = true;
-      prepPromises.push(
-        WIDGETS["recorder"].setRecording(true).then(() => {
+      promise = promise.
+        then(() => WIDGETS["recorder"].setRecording(true, { force : shouldResume?"append":undefined })).
+        then(() => {
           isMenuDisplayed = false;
           layout.setUI(); // grab our input handling again
           layout.forgetLazyState();
           layout.render();
-        })
-      );
+        });
     } else {
-      prepPromises.push(
-        WIDGETS["recorder"].setRecording(false)
+      promise = promise.then(
+        () => WIDGETS["recorder"].setRecording(false)
       );
     }
   }
 
-  if (!prepPromises.length) // fix for Promise.all bug in 2v12
-    prepPromises.push(Promise.resolve());
-
-  Promise.all(prepPromises)
-    .then(() => {
+  promise = promise.then(() => {
     if (running) {
-      exs.start();
+      if (shouldResume)
+        exs.resume()
+      else
+        exs.start();
     } else {
       exs.stop();
     }
@@ -125,7 +139,7 @@ lc.push({ type:"h", filly:1, c:[
 // Now calculate the layout
 let layout = new Layout( {
   type:"v", c: lc
-},{lazy:true, btns:[{ label:"---", cb: ()=>{if (karvonnenActive) {stopKarvonnenUI();run();} onStartStop();}, id:"button"}]});
+},{lazy:true, btns:[{ label:"---", cb: (()=>{if (karvonenActive) {stopKarvonenUI();run();} onStartStop();}), id:"button"}]});
 delete lc;
 setStatus(exs.state.active);
 layout.render();
@@ -155,7 +169,7 @@ Bangle.on("GPS", function(fix) {
   }
 });
 
-// run() function used to switch between traditional run UI and karvonnen UI
+// run() function used to switch between traditional run UI and karvonen UI
 function run() {
   wu.show();
   layout.lazy = false;
@@ -165,35 +179,35 @@ function run() {
   if (!runInterval){
     runInterval = setInterval(function() {
       layout.clock.label = locale.time(new Date(),1);
-      if (!isMenuDisplayed && !karvonnenActive) layout.render();
+      if (!isMenuDisplayed && !karvonenActive) layout.render();
     }, 1000);
   }
 }
 run();
 
 ///////////////////////////////////////////////
-//                Karvonnen
+//                Karvonen
 ///////////////////////////////////////////////
 
 function stopRunUI() {
   // stop updating and drawing the traditional run app UI
   clearInterval(runInterval);
   runInterval = undefined;
-  karvonnenActive = true;
+  karvonenActive = true;
 }
 
-function stopKarvonnenUI() {
+function stopKarvonenUI() {
   g.reset().clear();
-  clearInterval(karvonnenInterval);
-  karvonnenInterval = undefined;
-  karvonnenActive = false;
+  clearInterval(karvonenInterval);
+  karvonenInterval = undefined;
+  karvonenActive = false;
 }
 
-let karvonnenInterval;
+let karvonenInterval;
 // Define the function to go back and forth between the different UI's
 function swipeHandler(LR,_) {
-  if (LR==-1 && karvonnenActive && !isMenuDisplayed) {stopKarvonnenUI(); run();}
-  if (LR==1 && !karvonnenActive && !isMenuDisplayed) {stopRunUI(); karvonnenInterval = eval(require("Storage").read("runplus_karvonnen"))(settings.HRM, exs.stats.bpm);}
+  if (LR==-1 && karvonenActive && !isMenuDisplayed) {stopKarvonenUI(); run();}
+  if (LR==1 && !karvonenActive && !isMenuDisplayed) {stopRunUI(); karvonenInterval = eval(require("Storage").read("runplus_karvonen"))(settings.HRM, exs.stats.bpm);}
 }
 // Listen for swipes with the swipeHandler
 Bangle.on("swipe", swipeHandler);

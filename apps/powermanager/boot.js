@@ -42,10 +42,10 @@
 
 
     let logPower = (type, oldstate, state, app) => {
-      logFile.write("p," + type + ',' + (oldstate?1:0) + ',' + (state?1:0) + ',' + app + "\n");
+      logFile.write(Date.now() + ",p," + type + ',' + (oldstate?1:0) + ',' + (state?1:0) + ',' + app + "\n");
     };
     let logDeferred = (type, duration, source) => {
-      logFile.write(type + ',' + duration + ',' + source.replace(/\n/g, " ").replace(/,/g,"") + "\n");
+      logFile.write(Date.now() + "," + type + ',' + duration + ',' + source.replace(/\n/g, " ").replace(/,/g,"") + "\n");
     };
 
     let lastPowerOn = {};
@@ -77,14 +77,14 @@
 
     let functions = {};
     let wrapDeferred = ((o,t) => (a) => {
-      if (a == eval){
+      if (a == eval || typeof a == "string") {
         return o.apply(this, arguments);
       } else {
         let wrapped = a;
         if (!a.__wrapped){
           wrapped = ()=>{
             let start = Date.now();
-            let result = a.apply(undefined, arguments.slice(1));
+            let result = a.apply(undefined, arguments.slice(2)); // function arguments for deferred calls start at index 2, first is function, second is time
             let end = Date.now()-start;
             let f = a.toString().substring(0,100);
             if (settings.logDetails) logDeferred(t, end, f);
@@ -152,11 +152,12 @@
       return v;
     };
   }
-  
+
   if (settings.autoCalibration){
     let chargeStart;
+    if (Bangle.isCharging()) chargeStart = Date.now();
     Bangle.on("charging", (charging)=>{
-      if (charging) chargeStart = Date.now();
+      if (!chargeStart && charging) chargeStart = Date.now();
       if (chargeStart && !charging && (Date.now() - chargeStart > 1000*60*60*3)) require("powermanager").setCalibration();
       if (!charging) chargeStart = undefined;
     });
