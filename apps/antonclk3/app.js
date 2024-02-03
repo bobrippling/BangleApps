@@ -1,6 +1,11 @@
-"use strict";
 {
-    var app = "antonclk3";
+    var FONT_NAME_1 = "Teletext5x9Ascii";
+    var FONT_SIZE_1 = 5;
+    var OFF_1 = -10;
+    var FONT_NAME2_1 = "4x6";
+    var FONT_SIZE2_1 = 3;
+    var OFF2_1 = 8;
+    var app_1 = "antonclk3";
     var locale_1 = require("locale");
     var clock_info_1 = require("clock_info");
     var showSeconds_1 = false;
@@ -15,26 +20,24 @@
         }, interval - (Date.now() % interval));
     };
     var draw_1 = function () {
-        var x = g.getWidth() / 2;
+        var x = Bangle.appRect.w / 2;
         var y = g.getHeight() / 2 - 24;
         g.reset()
             .setColor(g.theme.bg)
             .fillRect(Bangle.appRect);
         var date = new Date();
-        var timeStr = locale_1.time(date, 1);
-        g.setFontAlign(0, 0)
-            .setFont("Vector")
+        var topStr = (showSeconds_1 ? date.getSeconds() + "s, " : "")
+            + date.getDate() + " / " + locale_1.month(date, 1);
+        g
             .setColor(g.theme.fg)
-            .drawString(timeStr, x, y);
-        var secStr = showSeconds_1
-            ? date.getSeconds() + "s "
-            : "";
-        var dateStr = locale_1.date(date, 0).toUpperCase() +
-            "\n" +
-            secStr + locale_1.dow(date, 0).toUpperCase();
-        g.setFontAlign(0, 0)
-            .setFont("6x8", 2)
-            .drawString(dateStr, x, y + 56);
+            .setFont(FONT_NAME2_1, FONT_SIZE2_1)
+            .setFontAlign(0, -1)
+            .drawString(topStr, x, Bangle.appRect.y + OFF2_1);
+        var timeStr = locale_1.time(date, 1);
+        g
+            .setFont(FONT_NAME_1, FONT_SIZE_1)
+            .setFontAlign(0, 0)
+            .drawString(timeStr, x, Bangle.appRect.y + Bangle.appRect.h / 2 + OFF_1);
         clockInfoMenus_1.forEach(function (menu) { return menu.redraw(); });
         queueDraw_1();
     };
@@ -64,16 +67,25 @@
                 .drawString(info.text, options.x + 24 + gap, options.y + 12);
         }
     };
+    Bangle.loadWidgets();
     var clockInfoItems_1 = clock_info_1.load();
     var clockInfoMenus_1 = [
         {
-            app: app,
-            x: 44,
-            y: 142,
+            app: app_1,
+            x: 0,
+            y: 132,
             w: 88,
-            h: 30,
+            h: 40,
             draw: clockInfoDraw,
         },
+        {
+            app: app_1,
+            x: 88,
+            y: 132,
+            w: 88,
+            h: 40,
+            draw: clockInfoDraw,
+        }
     ]
         .map(function (menu) { return clock_info_1.addInteractive(clockInfoItems_1, menu); });
     Bangle.on('lock', onStateChange_1);
@@ -91,6 +103,5 @@
             drawTimeout_1 = undefined;
         },
     });
-    Bangle.loadWidgets();
     Bangle.drawWidgets();
 }
