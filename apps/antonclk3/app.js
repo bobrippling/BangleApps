@@ -19,6 +19,7 @@
             draw_1();
         }, interval - (Date.now() % interval));
     };
+    var pad2_1 = function (n) { return (n < 10 ? "0" : "") + n; };
     var draw_1 = function () {
         var x = Bangle.appRect.w / 2;
         var y = g.getHeight() / 2 - 24;
@@ -34,7 +35,7 @@
             .setFontAlign(0, -1)
             .drawString(topStr, x, Bangle.appRect.y + OFF2_1);
         var hr = date.getHours();
-        var timeStr = "".concat(hr < 10 ? "0" : "").concat(hr, ":").concat(date.getMinutes());
+        var timeStr = "".concat(pad2_1(hr), ":").concat(pad2_1(date.getMinutes()));
         g
             .setFont(FONT_NAME_1, FONT_SIZE_1)
             .setFontAlign(0, 0)

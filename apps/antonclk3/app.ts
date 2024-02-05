@@ -40,6 +40,8 @@
     );
   };
 
+  const pad2 = n => (n < 10 ? "0" : "") + n;
+
   const draw = () => {
     const x = Bangle.appRect.w / 2;
     const y = g.getHeight() / 2 - 24;
@@ -66,7 +68,7 @@
         .drawString(topStr, x, Bangle.appRect.y + OFF2);
 
     const hr = date.getHours();
-    const timeStr = `${hr < 10 ? "0" : ""}${hr}:${date.getMinutes()}`;
+    const timeStr = `${pad2(hr)}:${pad2(date.getMinutes())}`;
     g
         .setFont(FONT_NAME, FONT_SIZE)
         .setFontAlign(0, 0)
