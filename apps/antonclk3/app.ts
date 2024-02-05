@@ -65,7 +65,8 @@
         .setFontAlign(0, -1)
         .drawString(topStr, x, Bangle.appRect.y + OFF2);
 
-    const timeStr = locale.time(date, 1);
+    const hr = date.getHours();
+    const timeStr = `${hr < 10 ? "0" : ""}${hr}:${date.getMinutes()}`;
     g
         .setFont(FONT_NAME, FONT_SIZE)
         .setFontAlign(0, 0)

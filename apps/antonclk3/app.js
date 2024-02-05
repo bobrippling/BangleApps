@@ -33,7 +33,8 @@
             .setFont(FONT_NAME2_1, FONT_SIZE2_1)
             .setFontAlign(0, -1)
             .drawString(topStr, x, Bangle.appRect.y + OFF2_1);
-        var timeStr = locale_1.time(date, 1);
+        var hr = date.getHours();
+        var timeStr = "".concat(hr < 10 ? "0" : "").concat(hr, ":").concat(date.getMinutes());
         g
             .setFont(FONT_NAME_1, FONT_SIZE_1)
             .setFontAlign(0, 0)
