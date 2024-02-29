@@ -43,6 +43,9 @@
   const pad2 = n => (n < 10 ? "0" : "") + n;
 
   const draw = () => {
+    // queue asap, to avoid interrupts causing us to never reach this
+    queueDraw();
+
     const x = Bangle.appRect.w / 2;
     const y = g.getHeight() / 2 - 24;
 
@@ -75,8 +78,6 @@
         .drawString(timeStr, x, Bangle.appRect.y + Bangle.appRect.h / 2 + OFF);
 
     clockInfoMenus.forEach(menu => menu.redraw());
-
-    queueDraw();
   };
 
   const onStateChange = () => {

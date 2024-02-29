@@ -21,6 +21,7 @@
     };
     var pad2_1 = function (n) { return (n < 10 ? "0" : "") + n; };
     var draw_1 = function () {
+        queueDraw_1();
         var x = Bangle.appRect.w / 2;
         var y = g.getHeight() / 2 - 24;
         g.reset()
@@ -41,7 +42,6 @@
             .setFontAlign(0, 0)
             .drawString(timeStr, x, Bangle.appRect.y + Bangle.appRect.h / 2 + OFF_1);
         clockInfoMenus_1.forEach(function (menu) { return menu.redraw(); });
-        queueDraw_1();
     };
     var onStateChange_1 = function () {
         showSeconds_1 = !Bangle.isLocked();
