@@ -23,7 +23,6 @@
     var draw_1 = function () {
         queueDraw_1();
         var x = Bangle.appRect.w / 2;
-        var y = g.getHeight() / 2 - 24;
         g.reset()
             .setColor(g.theme.bg)
             .fillRect(Bangle.appRect);
@@ -59,9 +58,12 @@
         var totalWidth = gap + (info.img ? 24 : 0) + textWidth;
         g.clearRect(options.x, options.y, options.x + options.w, options.y + options.h);
         if (info.img) {
+            var scale = void 0;
+            if (info.img.width)
+                scale = { scale: 24 / info.img.width };
             var x = options.x + options.w / 2 - totalWidth / 2;
             g.setFontAlign(-1, 0)
-                .drawImage(info.img, x + 2, options.y + 2)
+                .drawImage(info.img, x + 2, options.y + 2, scale)
                 .drawString(info.text, x + 24 + gap, options.y + 12);
         }
         else {
