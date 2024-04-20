@@ -47,7 +47,7 @@
     queueDraw();
 
     const x = Bangle.appRect.w / 2;
-    const y = g.getHeight() / 2 - 24;
+    //const y = g.getHeight() / 2 - 24;
 
     g.reset()
       .setColor(g.theme.bg)
