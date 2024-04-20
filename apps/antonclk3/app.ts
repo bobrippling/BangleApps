@@ -40,7 +40,7 @@
     );
   };
 
-  const pad2 = n => (n < 10 ? "0" : "") + n;
+  const pad2 = (n: number) => (n < 10 ? "0" : "") + n;
 
   const draw = () => {
     // queue asap, to avoid interrupts causing us to never reach this
@@ -66,7 +66,7 @@
 
     g
         .setColor(g.theme.fg)
-        .setFont(FONT_NAME2, FONT_SIZE2)
+        .setFont(FONT_NAME2 as FontName, FONT_SIZE2)
         .setFontAlign(0, -1)
         .drawString(topStr, x, Bangle.appRect.y + OFF2);
 
