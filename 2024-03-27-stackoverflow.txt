@@ -1,0 +1,719 @@
+1:
+	Uncaught Error: Too much recursion - the stack is about to overflow
+	 at line 1 col 8
+	var...
+	^
+	in function called from line 1 col 194
+	...return-1;if(a.name>b.name)return 1;return 0;});var i=0;var orderChanged=false;for(var _i=0,en...
+																																 ^
+	in function "sortCache" called from line 1 col 147
+	...();var orderChanged=sortCache();saveCache(cache_2,orderChanged)...
+																	 ^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 22
+	load("drained.app.js")
+											 ^
+
+2:
+	Uncaught Error: Too much recursion - the stack is about to overflow
+	 at line 1 col 8
+	var...
+	^
+	in function called from line 1 col 194
+	...return-1;if(a.name>b.name)return 1;return 0;});var i=0;var orderChanged=false;for(var _i=0,en...
+																																 ^
+	in function "sortCache" called from line 1 col 147
+	...();var orderChanged=sortCache();saveCache(cache_2,orderChanged)...
+																	 ^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 115
+	..."Storage").read(a))):load(a)
+																^
+	in function called from line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	at line 16 col 1797 in .boot0
+	...);Bangle.load=orig;}else o(name);
+																		^
+	in function "load" called from line 1 col 64
+	...load=slowload;Bangle.load(n);global.load=fastload;}else slowload...
+																		^
+	in function "oldLoad" called from line 1 col 194
+	...orderChanged);}return oldLoad(src);
+																			^
+	in function "_load" called from line 1 col 15
+	global._load(n);
+								^
+	in function "load" called from line 1 col 22
+	load("drained.app.js")
+											 ^
