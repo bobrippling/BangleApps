@@ -24,7 +24,7 @@
   // const clockface = new ClockFace();
 
   let showSeconds = false;
-  let drawTimeout: number | undefined;
+  let drawTimeout: TimeoutId | undefined;
 
   const queueDraw = () => {
     if (drawTimeout) clearTimeout(drawTimeout);
