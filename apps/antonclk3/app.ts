@@ -108,10 +108,14 @@
     );
 
     if (info.img) {
+      let scale;
+      if ((info.img as ImageObject).width)
+        scale = { scale: 24 / (info.img as ImageObject).width };
+
       const x = options.x + options.w / 2 - totalWidth / 2;
 
       g.setFontAlign(-1, 0)
-        .drawImage(info.img, x + 2, options.y + 2)
+        .drawImage(info.img, x + 2, options.y + 2, scale)
         .drawString(info.text, x + 24 + gap, options.y + 12 /* 24/2 */);
 
     } else {
