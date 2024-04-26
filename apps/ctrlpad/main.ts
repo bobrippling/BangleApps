@@ -29,6 +29,7 @@
 		g2: Graphics;
 		width: number;
 		height: number;
+		savedLCDOverlay: undefined | (() => void);
 
 		constructor() {
 			// x padding: 10 each side
@@ -49,6 +50,16 @@
 		setBottom(bottom: number): void {
 			const { g2 } = this;
 			const y = bottom - this.height;
+
+			if(!this.savedLCDOverlay){
+				this.savedLCDOverlay = Bangle.setLCDOverlay;
+				const self = this;
+				Bangle.setLCDOverlay = function() {
+					// disable ourselves
+
+					return self.savedLCDOverlay.apply(this, arguments);
+				};
+			}
 
 			Bangle.setLCDOverlay(g2, 10, y - 10);
 		}
