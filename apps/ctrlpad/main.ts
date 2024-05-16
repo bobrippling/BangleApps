@@ -203,10 +203,48 @@
 				}
 			},
 			{
-				text: "clk",
+				text: "adv",
 				cb: tap => {
-					if (tap) Bangle.showClock(), terminateUI();
-					return true;
+					type BleAdvert = { [key: string | number]: number[] };
+					const bangle2 = Bangle as {
+						bleAdvert?: BleAdvert | BleAdvert[];
+					};
+
+					let found = false;
+					if(Array.isArray(bangle2.bleAdvert)){
+						// ensure we're in the cycle
+						let i = 0;
+						for(let ad of bangle2.bleAdvert){
+							if(ad[0x180e]){
+								if(tap)
+									bangle2.bleAdvert.splice(i, 1), found = false;
+								found = true;
+								break;
+							}
+							i++;
+						}
+						if(!found && tap)
+							bangle2.bleAdvert.push({ [0x180e]: [1] }), found = true;
+					}else if(bangle2.bleAdvert){
+						if(bangle2.bleAdvert[0x180e]){
+							found = true;
+							if(tap)
+								delete bangle2.bleAdvert[0x180e], found = false;
+						}else if(tap){
+							bangle2.bleAdvert[0x180e] = [1];
+							found = true;
+						}
+					}else if(tap){
+						bangle2.bleAdvert = {
+							0x180e: [1],
+						};
+						found = true;
+					}
+
+					if(tap)
+						NRF.setAdvertising(bangle2.bleAdvert);
+
+					return found;
 				},
 			},
 			{
