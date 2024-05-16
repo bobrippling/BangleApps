@@ -1,30 +1,4 @@
 (() => {
-	if(!Bangle.prependListener){
-		type Event<T> = T extends `#on${infer Evt}` ? Evt : never;
-
-		Bangle.prependListener = function(
-			evt: Event<keyof BangleEvents>,
-			listener: () => void
-		){
-			// move our drag to the start of the event listener array
-			const handlers = (Bangle as BangleEvents)[`#on${evt}`]
-
-			if(!handlers){
-				Bangle.on(evt as any, listener);
-			}else{
-				if(typeof handlers === "function"){
-					// get Bangle to convert to array
-					Bangle.on(evt as any, listener);
-				}
-
-				// shuffle array
-				(Bangle as BangleEvents)[`#on${evt}`] = [listener as any].concat(
-					(handlers as Array<any>).filter((f: unknown) => f !== listener)
-				);
-			}
-		};
-	}
-
 	class Overlay {
 		g2: Graphics;
 		width: number;
