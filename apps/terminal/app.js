@@ -1,9 +1,4 @@
-/* Espruino VT100 JS REPL
-
-
-TODO: Add option to connect to a remote BLE device
-
-*/
+/* Espruino VT100 JS REPL */
 
 var settings = Object.assign({
   // default values
@@ -80,7 +75,7 @@ var KEYIMGR = Graphics.createImage(`
  ##          ##
 ###   #####  ###
  ##    ###   ##
-  #     #    #   
+  #     #    #
 
 `);
 KEYIMGR.transparent = 0;
@@ -252,7 +247,7 @@ function mainMenu() {
             }).catch(err => {
               E.showAlert(err.toString()).then(() => mainMenu());
             });
-          };          
+          };
         });
         E.showMenu(menu);
       }, { filters: [{ services: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'] }], timeout: 2000, active:true });
@@ -261,3 +256,5 @@ function mainMenu() {
 }
 
 mainMenu();
+
+// TODO: modify this to allow textinput, then use with apps/kbble
