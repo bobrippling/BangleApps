@@ -1,0 +1,3 @@
+exports.input = function(options) {
+	// ...
+};
