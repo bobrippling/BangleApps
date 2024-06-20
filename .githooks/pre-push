@@ -10,8 +10,10 @@ do
 	then continue
 	fi
 
-	remote_ref_adj="$remote/${remote_ref#refs/heads/}"
-	git diff --name-only "$remote_ref_adj" "$local_ref" -- apps/ |
+	#remote_ref_adj="$remote/${remote_ref#refs/heads/}"
+	remote_ref_adj="upstream/master"
+
+	git diff --name-only "$remote_ref_adj"..."$local_ref" -- apps/ |
 		cut -d/ -f1-2 |
 		uniq | (
 			ec=0
