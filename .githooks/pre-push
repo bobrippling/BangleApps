@@ -16,6 +16,8 @@ do
 		uniq | (
 			ec=0
 			while read app; do
+				if test -f "$app"; then continue; fi
+
 				if git diff --quiet "$remote_ref_adj" "$local_ref" -- "$app"/metadata.json; then
 					# no changes
 					echo >&2 "$0: changes to $app, but no change to $app/metadata.json"
