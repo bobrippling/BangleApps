@@ -59,6 +59,8 @@ function setStatus(running) {
 
 // Called to start/stop running
 function onStartStop() {
+  Bangle.buzz(300);
+
   if (screen === "karvonen") {
     // start/stop on the karvonen screen reverts us to the main screen
     setScreen("main");
