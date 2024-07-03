@@ -89,6 +89,12 @@ function onStartStop() {
   // an overwrite before we start tracking exstats
   if (settings.record && WIDGETS["recorder"]) {
     if (running) {
+      if(shouldResume){
+        // draw immediately to avoid any delay
+        layout.forgetLazyState();
+        tick();
+      }
+
       screen = "menu";
       promise = promise.
         then(() => WIDGETS["recorder"].setRecording(true, { force : shouldResume?"append":undefined })).
