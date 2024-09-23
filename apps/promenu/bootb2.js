@@ -45,17 +45,20 @@ E.showMenu = function (items) {
             .setColor(hl ? g.theme.fgH : g.theme.fg)
             .setFontAlign(-1, -1);
         var vplain = v.indexOf("\0") < 0;
-        var truncated = true;
-        if (vplain && name.length >= 17 - v.length && typeof item === "object") {
-            g.drawString(name.substring(nameScroll, nameScroll + 12 - v.length) + "...", x + 3.7, y + 2.7);
+        var drawn = false;
+        var truncated = false;
+        if (vplain) {
+            var isFunc = typeof item === "function";
+            var lim = isFunc ? 15 : 17 - v.length;
+            if (name.length >= lim) {
+                var dots = nameScroll >= name.length - 5 ? "" : "...";
+                g.drawString(name.substring(nameScroll, nameScroll + (isFunc ? 15 : 12 - v.length)) + dots, x + 3.7, y + 2.7);
+                drawn = true;
+                truncated = true;
+            }
         }
-        else if (vplain && name.length >= 15) {
-            g.drawString(name.substring(nameScroll, nameScroll + 15) + "...", x + 3.7, y + 2.7);
-        }
-        else {
+        if (!drawn)
             g.drawString(name, x + 3.7, y + 2.7);
-            truncated = false;
-        }
         var xo = x2;
         if (selectEdit && idx === selected) {
             xo -= 24 + 1;
