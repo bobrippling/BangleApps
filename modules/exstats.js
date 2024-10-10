@@ -101,7 +101,7 @@ var stats = {};
 
 const DATA_FILE = "exstats.json";
 // Load the state from a saved file if there was one
-state = Object.assign(state, require("Storage").readJSON(DATA_FILE,1)||{});
+state = Object.assign(state, require2("Storage").readJSON(DATA_FILE,1)||{});
 state.startSteps = Bangle.getStepCount()  - (state.lastSteps - state.startSteps);
 // force step history to a uint8array
 state.stepHistory = new Uint8Array(state.stepHistory);
@@ -339,6 +339,10 @@ exports.getStats = function(statIDs, options) {
       state.notify.time.next = state.notify.time.next + state.notify.time.increment;
       stats["time"].emit("notify",stats["time"]);
     }
+    console.log(`exstats`, {
+      duration: state.duration,
+      distance: state.distance,
+    });
   }, 1000);
   function reset() {
     state.startTime = state.lastTime = Date.now();

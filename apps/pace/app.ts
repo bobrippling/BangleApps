@@ -26,6 +26,16 @@ type Split = {
 const splits: Split[] = []; // times
 let splitOffset = 0, splitOffsetPx = 0;
 
+/*
+if(typeof TESTING !== "undefined"){
+  exports.get = () => ({
+    exs,
+    splits,
+    drawTimeout,
+  });
+}
+*/
+
 const GPS_TIMEOUT_MS = 30000;
 
 const layout = new Layout({
@@ -180,6 +190,14 @@ exs.stats.dist.on("notify", (dist) => {
   let thisSplit = totalDist - prev.dist;
   let thisTime = exs.state.duration - prev.time;
 
+  console.log("dist notify", {
+      totalDist: totalDist,
+      prevDist: prevDist,
+      thisSplit: thisSplit,
+      prevTime: prevTime,
+      thisTime: thisTime,
+  });
+
   while(thisSplit > 1000) {
     splits.push({ dist: thisSplit as Dist, time: thisTime as Time });
     thisTime = 0; // if we've jumped more than 1k, credit the time to the first split
@@ -190,6 +208,8 @@ exs.stats.dist.on("notify", (dist) => {
   exs.state.notify.dist.next -= thisSplit;
 
   S.writeJSON("pace.json", { splits });
+
+  console.log({ splits });
 });
 
 Bangle.on('lock', locked => {
