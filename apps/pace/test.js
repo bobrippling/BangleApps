@@ -1,28 +1,3 @@
-let distNotify;
-const Exs = {
-	state: {
-		active: true,
-		duration: 0,
-		thisGPS: {
-			time: 0,
-		}
-	},
-	stats: {
-		pacec: {
-			getString() { return "pace0"; }
-		},
-		dist: {
-			on(type, cb) {
-				if(type === "notify")
-					distNotify = cb;
-			}
-		}
-	},
-	stop() { this.state.active = false; },
-	start() { this.state.active = true; },
-	resume() { this.state.active = true; },
-};
-
 const Layout = function() {
 	// called with new
 	this.time = { label: "" };
